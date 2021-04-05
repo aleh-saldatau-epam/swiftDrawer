@@ -65,7 +65,8 @@ struct ContentView: View {
 struct Lines: View {
     let points: [MyOwnPoint]
     var body: some View {
-        MyOwnPoint.createPath(from: points).stroke(Color.green, lineWidth: 2)
+        MyOwnPoint.createPath(from: points)
+            .stroke(Color.green, lineWidth: 2)
     }
 }
 
