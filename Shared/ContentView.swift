@@ -39,24 +39,18 @@ struct MyOwnPoint: Hashable {
 
 struct ContentView: View {
 
-    @State var path: Path = Path()
     @State var points: [MyOwnPoint] = []
 
     var body: some View {
         ZStack(alignment: .topLeading) {
             Color.white
             Lines(points: points)
-            Points(points: MyOwnPoint.createPoints(from: path))
+            Points(points: points)
         }
         .gesture(
             DragGesture(minimumDistance: 0, coordinateSpace: .local)
                 .onEnded({ (state) in
                     points.append(MyOwnPoint(x: state.startLocation.x, y: state.startLocation.y))
-                    if path.isEmpty {
-                        path.move(to: state.startLocation)
-                    } else {
-                        path.addLine(to: state.startLocation)
-                    }
                 })
         )
     }
